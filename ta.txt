@@ -1,0 +1,15 @@
+list
+dist RI-Pawtucket-RG MD-Columbia-DM
+dist NY-Lake-Placid-LZ MA-Medford-PM
+dist NY-New-Rochelle-SBP TX-Houston-CRC
+dist NY-New-Rochelle-SBP IL-Lake-Bluff-CAR
+dist  RI-Pawtucket-RG CA-Palo-Alto-KM
+dist gloop lop
+path RI-Pawtucket-RG NJ-New-Providence-LC 10
+path IL-Lake-Bluff-CAR CA-San-Francisco-AJ 10
+path NY-New-Rochelle-SBP CA-Fremont-EI 10
+path WA-Seattle-JL CT-Guilford-MC 10
+path NY-Lake-Placid-LZ MA-Wayland-JC 20
+path NJ-New-Providence-LC CA-San-Francisco-AJ 3
+path CA-Palo-Alto-KM bloop 1
+quit

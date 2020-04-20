@@ -1,0 +1,10 @@
+list
+dist v1 v2
+dist v4 v5
+dist v6 v7
+dist gloop lop
+path v1 v3 10
+path v1 v7 10
+path v7 v1 10
+path v3 v5 10
+path v3 v4 10

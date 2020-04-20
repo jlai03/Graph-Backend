@@ -1,0 +1,20 @@
+list
+dist boop lop
+dist NJ-Hoboken-lc China-Shanghai-rx
+dist China-Hefei-cxu
+MA-bosotn-jh
+dist Ecuador-Quito-mhi SouthKorea-Gwangju-yp
+dist MA-Cambridge-tm NH-Hollis-daj
+dist Japan-TokyoSuginami-ai MA-Canton-abm
+dist NY-NewYork-bq NY-NewYork-bq
+dist MA-Longmeadow-jdf CT-Ellington-tm
+dist MA-Canton-abm MD-LuthervilleTimonium-bs
+dist IL-HighlandPark-jbm IL-HighlandPark-jbm
+path SouthKorea-Seoul-jerro China-HaikouHainan-yl 1
+path NJ-Allendale-ek MA-Revere-al 100
+path VT-Barre-jrmr WI-Oshkosh-dlg 100
+path NJ-Stanhope-mc MD-LuthervilleTimonium-bs 15
+path bloop hoop 7
+path MA-Worcester-btnn HongKong-HongKong-gl 100
+path MD-LuthervilleTimonium-bs NJ-Bridgewater-nms 14
+path AZ-Tucson-rcfm NC-ChapelHill-itw 25

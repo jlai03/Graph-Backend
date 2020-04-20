@@ -1,0 +1,194 @@
+/**********************************************************
+* Proj2 - Final
+* Comp 15 Spring 2020
+* README
+* Author: Jonathan Lai
+*********************************************************/
+
+Compile/run:
+     - Compile using
+            make
+            make test
+
+     - run executable with
+            ./findpath
+            ./test
+
+Program Purpose:
+
+This project is concerned with utilizing data structures to store information
+on a directed graph (specifically, a graph where nodes represent cities and
+edges represent the path between cities). The data structure I used was some
+form of an "adjacency list" represented by storing a vector of node pointers
+which each themselves contained another vector of node pointers - pointing to
+nodes within the same vector). The second data structure I used was a stack,
+for simulating a recursive depth first search in listing paths between
+two selected nodes in a graph.
+
+In phase 1 of the project, the program had to be able to take user input and
+report info on data stored about the graph (ex: listing the cities, reporting
+the distances between the two, quiting the program).
+
+In phase 2 of the project, the program had to be able to list paths from one
+city to another. This was done using a DFS modeled by the stack.
+
+Acknowledgements: Mark Sheldon covered the concept of Graphs in the lecture on
+                  Apr. 2nd. My graph class implementation is partially inspired
+                  by Lab 9's set up. I set up most of the "getline /
+                  istringstream" functions based on code form Comp11. I also
+                  used some functions from the <iomanip> library - which I read
+                  about from Tony Gaddis' "Starting out with C++".
+
+Files:
+
+Graph.cpp:
+     The Graph.cpp file contains the implementation for the Graph class which
+     stores a vector of node pointers. "Read in" Functions for this class
+     include 1) the ability to read in "nodes" a.k.a. cities from a file
+     containing a list of cities and their locations (degree, min) and
+     2) reading in a list of directed edges connecting the nodes. It also has
+     the ability to find the index of a given node in the vector. The "List"
+     function simply lists all the cities / nodes in the vector. The "Distance"
+     functions call the Location class which is able to compute the distance
+     between two locations.(The two sub functions collectively convert the
+     node's "degree, min" notation into decimals and stores it as location
+     variables so that the distance may be computed). The "Path" functions
+     collectively print the path from one node to another using a depth first
+     search with a stack. print_path() calls print_loop() which initiates
+     the stack simulation. explored() checks is a current node has already
+     been explored, expand_top() expands the Stack_var on top of the stack,
+     pathway() reports a given pathway. The final three sets of functions
+     are used for testing purposes - testing the stack functionality, printing
+     the graph's data, and retrieving a pointer to a node.
+
+Graph.h:
+     This file contains the interface of the functions described in
+     Graph.cpp. It contains the private member vector <Node*> vec
+     (a vector of node pointers - representing the directed graph structure).
+     It's private members also include stack <Stack_var> dfs_nodes which is
+     used for the DFS simulation with a stack - in printing paths out.
+     The public functions can generally be grouped into constructors and
+     destructor, functions for reading in data, the list function, functions
+     for computing distance, functsion for printing the path, and functions
+     for testing. All of the function members are made public because a) they
+     are all called and tested for edge cases in the testGraph.cpp file and
+     b) all the sub - functions allow future usability and modularity.
+
+
+Node.h:
+    This file contains the node struct definition for the overall vector of
+    node pointers used to represent the directed graph. Each node contains
+    a) a name b) its location represented in longitude and latitude (degree,
+    min notation) and c) another vector of node pointers. Each node in the
+    original vector contains this extra list of pointers to resemble the
+    directed edges. For instance, if we have a directed edge from node
+    v1 to v4, v1's index in the overall vector would point to a node who's
+    individual vector contains a pointer to the v4 node. This "adjacency
+    list" is what the overall data structure relies on.
+
+Stack_var.h:
+    This file contains the Stack_var struct definition for the Depth First
+    Search simulation. The Depth First Search is simulated by a Stack, such
+    that each node visited will be represented as a Stack_var pushed onto
+    a stack. Each Stack_var contains a) a name and b) a prev. The prev
+    the Stack's predecessor which is utilized many times throughout the
+    algorithm to ensure that predecessor vector matches the stack's current
+    state.
+
+findpath.cpp:
+    This file contains the "main" code implementation for ./findpath . It
+    basically creates an instance of the graph class, reads in data from the
+    files, and initiates a while loop to simulate user interface shown
+    in the reference implementation. There are no prompts, rather the user
+    inputs queries and the requested info is printed to the terminal
+    (followed by a print of "-EOT-" resembling end of transmission - if
+    not errors occur).
+
+testGraph.cpp
+    This file tests the Graph functions. It first tests out all the basic
+    public functions in the Graph Class - reading in data, listing nodes,
+    computing distance. I then tested edge cases, where the user tries
+    accessing or using data that doesn't exist. Some of the sub functions
+    could be called out of context - thus extra code was written to
+    assure that these edge cases wouldn't result in a seg fault. For phase 2,
+    the the sub functions print_path() were tested for functionality and edge
+    cases. Then, the same testing format was applied to testing multiple
+    pahts for a given graph - both ones that were irreducible and
+    non - irreducible.
+
+data0.txt
+    This file contains a set of user commands that can be used for testing
+    the data files (data0.vdat and data0.adat). I used these
+    commands to test functionality and it passed the diff with the reference
+    implementation. This one was written without the "quit" command to test
+    the program's ability to read from a cin file.
+
+ta.txt
+    This file contains a set of user commands that can be used for testing
+    the data files (ta.vdat and ta.adat). I used these
+    commands to test functionality and it passed the diff with the reference
+    implementation. This one was written with the "quit" command to test
+    the program's ability to quit out of the program.
+
+c15.txt
+    This file contains a set of user commands that can be used for testing
+    the data files (c15.vdat and c15-10k.adat). I used these
+    commands to test functionality and it passed the diff with the reference
+    implementation. This one was written without the "quit" command to test
+    the program's ability to read from a cin file.
+
+ec0.adat
+    This file contains the edge information (alongside data0.vdat) to model
+    a graph that is not irreducible (i.e. a graph where not all the nodes
+    are connected). This was done to test the program's ability to detect
+    tha absence of paths between two nodes. The program passed the test
+    successfully.
+
+Note:  the program should handle all cases.
+
+Data Structures:
+
+        Vector - An Array List of a specified variable type which can change
+                 it's size automatically. It also comes with functions that
+                 allow elements to be added/removed from the front and back
+                 of the list. This was used in:
+
+                    a) constructing the Graph's node pointer vector in the
+                       private portion of the Graph Class. This represents
+                       the physical Graph itself.
+
+                    b) creating a predecessor vector (filled with vertex names)
+                       to track the path of the depth first search simulated
+                       by the stack
+
+        Stack - A Stack of a specified variable type models a Last in, First
+                out (LIFO) data structure. It comes with the ability to
+                push a variable onto the stack, access the element on top
+                of the stack, and pop element off the stack. Stacks can be
+                used to model recursive behavior. This was used in:
+
+                    a) constructing a stack of (Stack_var)'s which was used
+                       to simulate the depth first search. Everytime a new
+                       vertex was explored, it would push the vertex onto the
+                       stack and expand it (pop and push on its neighbors).
+                       Simulataneously, the predecessor vector was used
+                       to track the ongoing path.
+
+Testing:
+    To test the program, I wrote a testing file for the Graph class. This file
+    tested basic functionality and edge cases (ex: when trying to work with
+    nodes or cities that don't exist, trying to open files that don't exist,
+    or incorrect argument count). Specifically, it tested the program's ability
+    to read in the data files, list the vertices, convert data type to
+    location, compute distance between nodes, operate on the DFS simulation
+    stack (ex: expand, top, push, pop), and report paths between nodes. I also
+    created a separate ec0.adat file corresponding to data0.vdat to test the
+    program's ability to operate and recognize the lack of paths on a non
+    irreducible graph.I also created an input file for each of the provided
+    data files to test the file commands. Each input file tested functionality,
+    , but also toggled between placing quit at the end of the file (to test
+    the cin.eof()) edge case. I used these input files to diff the created
+    findpath program with the reference implementation - which matched
+    successfully for all the data files. After testing on the commandline,
+    I published the backend to the provided website, and the data was
+    presented properly - meaning my program is functional.
